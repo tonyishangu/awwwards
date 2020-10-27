@@ -1,0 +1,59 @@
+<body>
+    <nav class="navbar navbar-expand-xl navbar-inverse fixed-top">
+        <a class="navbar-brand" href="{% url 'index' %}">Awwwards</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+                <i class="fas fa-ellipsis-v"></i>
+            </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="search-box">
+                <form class="form-inline my-2 my-lg-0 mx-auto" role="search" action="{% url 'search_project' %}">
+                    <input class=" search-txt" type="text" placeholder="Search Project" name='project'>
+                    <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <ul style="margin-right:50px;" class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="/admin" class="nav-link">Admin Portal</a>
+                </li>
+                <li class="nav-item dropdown show">
+                    <a style="color:#fff;" class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        APIs
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a href="{% url 'profile_list' %}" class="dropdown-item">Users API</a>
+                        <a href="{% url 'project_list' %}" class="dropdown-item">Projects API</a>
+                    </div>
+                </li>
+
+
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="{% url 'profile'%}" class="nav-link">My Account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'submit_project' %}">Submit Project</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/accounts/login/">Login</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="/accounts/register/">Sign Up</a>
+                </li>
+                {% endif %}
+
+
+            </ul>
+        </div>
+    </nav>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="static/js/nav.js"></script>
+</body>
