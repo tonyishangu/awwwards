@@ -23,7 +23,7 @@ def index(request):
     return render(request,'index.html',{'projects':projects,'best_rating':best_rating,'best_project':best_project})
 
 
-@login_required(login_url='/accounts/login/')
+@login_required
 def profile(request):
     profile = UserProfile.objects.filter(user = request.user).first()
     projects = Project.objects.filter(user = request.user).all()
@@ -45,7 +45,7 @@ def profile(request):
 
 
 
-@login_required(login_url='/accounts/login/')
+@login_required
 def submit_project(request):
     current_user = request.user
     if request.method == 'POST':
@@ -73,7 +73,7 @@ def search_project(request):
     return render(request,'search.html')
 
 
-@login_required(login_url='/accounts/login/')
+@login_required
 def project(request,project_id):
     project = Project.objects.get(id=project_id)
     rating = round(((project.design + project.usability + project.content)/3),2)
@@ -110,3 +110,17 @@ class ProjectList(APIView):
         all_projects = Project.objects.all()
         serializers = ProjectSerializer(all_projects,many=True)
         return Response(serializers.data)
+
+def login(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        return redirect(request,'/')
+    
+    return render(request, '/registration/login.html')
+@login_required
+def logout(request):
+    django_logout(request)
+    return  HttpResponseRedirect('/')

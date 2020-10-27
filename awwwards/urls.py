@@ -17,11 +17,14 @@ from django.contrib import admin
 from django.conf.urls import url
 from django.conf.urls import include
 from django.contrib.auth import views
+from django.contrib.auth import views as auth_views
+from django_registration.backends.one_step.views import RegistrationView
 
 urlpatterns = [
     url('^admin/', admin.site.urls,name='admin'),
     url('',include('projects.urls')),
-    url('^accounts/', include('registration.backends.simple.urls')),
-    url('^logout/$',views.logout,{'next_page':'/'}),
+    url('^accounts/', include('django_registration.backends.one_step.urls')),
+    url('^logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
+    #url('^logout/$',views.logout,{'next_page':'/'}),
     url('^tinymce/',include('tinymce.urls')),
 ]
