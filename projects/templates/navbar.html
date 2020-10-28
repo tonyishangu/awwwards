@@ -19,16 +19,7 @@
                 <li class="nav-item">
                     <a href="/admin" class="nav-link">Admin</a>
                 </li>
-                <li class="nav-item dropdown show">
-                    <a style="color:#fff;" class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        APIs
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a href="{% url 'profile_list' %}" class="dropdown-item">Users API</a>
-                        <a href="{% url 'project_list' %}" class="dropdown-item">Projects API</a>
-                    </div>
-                </li>
+                
 
 
                 {% if user.is_authenticated %}
