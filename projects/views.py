@@ -10,6 +10,8 @@ from rest_framework.views import APIView
 from .serializer import ProfileSerializer,ProjectSerializer
 from django.contrib.auth import authenticate, login
 from django.db.models import Max,F
+from .models import *
+from .forms import *
 
 
 # Create your views here.
