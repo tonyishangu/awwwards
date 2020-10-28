@@ -5,7 +5,7 @@ from django.conf import settings
 
 urlpatterns=[
     url('^$',views.index, name='index'),
-    url('^accounts/login/', views.login, name='login'),
+    url('^signup/', views.signup, name='signup'),
     url('^profile/',views.profile, name='profile'),
     url('^new_project/',views.submit_project, name='submit_project'),
     url('^search/',views.search_project,name='search_project'),

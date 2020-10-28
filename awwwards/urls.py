@@ -22,9 +22,9 @@ from django_registration.backends.one_step.views import RegistrationView
 
 urlpatterns = [
     url('^admin/', admin.site.urls,name='admin'),
-    url('',include('projects.urls')),
+    url('^',include('projects.urls')),
     url('^accounts/', include('django_registration.backends.one_step.urls')),
     url('^logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
-    #url('^logout/$',views.logout,{'next_page':'/'}),
     url('^tinymce/',include('tinymce.urls')),
+    url('^accounts/', include('django.contrib.auth.urls')),
 ]
